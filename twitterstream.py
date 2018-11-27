@@ -1,4 +1,5 @@
 import collections
+import os
 import time
 import uuid
 
@@ -6,10 +7,10 @@ import bottle
 from feedgen import feed
 import twitter
 
-api_key = ""
-api_secret = ""
-access_token_key = ""
-access_token_secret = ""
+api_key = os.environ.get("TIS_API_KEY", "")
+api_secret = os.environ.get("TIS_API_SECRET", "")
+access_token_key = os.environ.get("TIS_TOKEN_KEY", "")
+access_token_secret = os.environ.get("TIS_TOKEN_SECRET", "")
 
 uuid_namespace = uuid.UUID('e8cd8531-a8df-4b41-a249-479d15252349')
 
