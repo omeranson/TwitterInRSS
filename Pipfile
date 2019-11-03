@@ -13,3 +13,6 @@ feedgen = "*"
 
 [requires]
 python_version = "3.7"
+
+[scripts]
+twitterstream = "python twitterstream.py"

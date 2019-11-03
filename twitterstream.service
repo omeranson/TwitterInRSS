@@ -1,0 +1,13 @@
+[Unit]
+Description=Twitter stream in RSS
+
+[Service]
+WorkingDirectory = # Path to project
+Environment = "TIS_API_KEY=..."
+Environment = "TIS_API_SECRET=..."
+Environment = "TIS_TOKEN_KEY=..."
+Environment = "TIS_TOKEN_SECRET=..."
+ExecStart = /usr/bin/pipenv run twitterstream
+
+[Install]
+WantedBy=multi-user.target
