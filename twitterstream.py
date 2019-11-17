@@ -43,7 +43,7 @@ rate_limiter = RateLimiter(2, 10)
 
 
 def create_rss_feed_xml():
-    tweets = t.statuses.home_timeline()
+    tweets = t.statuses.home_timeline(tweet_mode='extended')
     fg = feed.FeedGenerator()
     fg.id('https://twitter.com/omeranson')
     fg.title('Twitter feed')
@@ -57,7 +57,7 @@ def create_rss_feed_xml():
         fe.title('%s (@%s)' % (tweet['user']['name'],
                                tweet['user']['screen_name']))
         fe.link(href='https://twitter.com/i/status/%s' % (tweet['id_str']))
-        fe.description(tweet['text'])
+        fe.content(tweet['full_text'])
         fe.author(name=tweet['user']['name'])
     output = fg.atom_str(pretty=True)
     global cached_output
