@@ -57,13 +57,24 @@ def create_rss_feed_xml():
         fe.title('%s (@%s)' % (tweet['user']['name'],
                                tweet['user']['screen_name']))
         fe.link(href='https://twitter.com/i/status/%s' % (tweet['id_str']))
-        fe.content(tweet['full_text'])
+        fe.content(_get_tweet_text(tweet), type='html')
         fe.author(name=tweet['user']['name'])
     output = fg.atom_str(pretty=True)
     global cached_output
     cached_output = output
     return output
 
+
+def _get_tweet_text(tweet):
+    return _escape_html(tweet['full_text']).replace('\n', '<br/>\n')
+
+
+def _escape_html(text):
+    return (text.replace('&', '&amp;')
+                .replace('<', '&lt;')
+                .replace('>', '&gt;')
+                .replace('\'', '&apos;')
+                .replace('"', '&quot;'))
 
 @bottle.route('/')
 @bottle.route('/feed.xml')
