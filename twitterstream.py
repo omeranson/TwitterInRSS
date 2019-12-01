@@ -1,4 +1,5 @@
 import collections
+import datetime
 import os
 import time
 import uuid
@@ -6,6 +7,8 @@ import uuid
 import bottle
 from feedgen import feed
 import twitter
+
+TWEET_CREATED_AT_FORMAT = '%a %b %d %H:%M:%S %z %Y'
 
 api_key = os.environ.get("TIS_API_KEY", "")
 api_secret = os.environ.get("TIS_API_SECRET", "")
@@ -59,6 +62,8 @@ def create_rss_feed_xml():
         fe.link(href='https://twitter.com/i/status/%s' % (tweet['id_str']))
         fe.content(_get_tweet_text(tweet), type='html')
         fe.author(name=tweet['user']['name'])
+        fe.updated(datetime.datetime.strptime(tweet['created_at'],
+                                              TWEET_CREATED_AT_FORMAT))
     output = fg.atom_str(pretty=True)
     global cached_output
     cached_output = output
@@ -75,6 +80,7 @@ def _escape_html(text):
                 .replace('>', '&gt;')
                 .replace('\'', '&apos;')
                 .replace('"', '&quot;'))
+
 
 @bottle.route('/')
 @bottle.route('/feed.xml')
