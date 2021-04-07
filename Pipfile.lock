@@ -18,10 +18,11 @@
     "default": {
         "bottle": {
             "hashes": [
-                "sha256:39b751aee0b167be8dffb63ca81b735bbf1dd0905b3bc42761efedee8f123355"
+                "sha256:a9d73ffcbc6a1345ca2d7949638db46349f5b2b77dac65d6494d45c23628da2c",
+                "sha256:f6b8a34fe9aa406f9813c02990db72ca69ce6a158b5b156d2c41f345016a723d"
             ],
             "index": "pypi",
-            "version": "==0.12.13"
+            "version": "==0.12.19"
         },
         "feedgen": {
             "hashes": [
@@ -69,7 +70,6 @@
                 "sha256:f8380c03e45cf09f8557bdaa41e1fa7c81f3ae22828e1db470ab2a6c96d8bc23",
                 "sha256:f90ba11136bfdd25cae3951af8da2e95121c9b9b93727b1b896e3fa105b2f586"
             ],
-            "index": "pypi",
             "version": "==4.6.3"
         },
         "pyrss2gen": {
